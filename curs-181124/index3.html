@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        var n = 12321;
+        var s = 0;
+        var r = 0;
+        var m = n;
+
+        while (n) {
+            s = n % 10;
+            r = r * 10 + s;
+            n = Math.floor(n / 10);
+            console.log(n);
+        }
+        console.log(r);
+
+        if (r == m) {
+            console.log('este palindrom');
+        } else {
+            console.log('nu este palindrom');
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <h1>My First Heading</h1>
+
+    <p>My first paragraph.</p>
+
+</body>
+
+</html>
