@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <script>
+        var ionel, gigel, danut = "";
+        var a = 0;
+        var b = 0;
+        var c = 0;
+        var ionel = {nume:"ionel", inaltime:180};
+        var gigel = {nume:"gigel", inaltime:300};
+        var danut = {nume:"danut", inaltime:190};
+        var a = ionel.inaltime;
+        var b = gigel.inaltime;
+        var c = danut.inaltime;
+        
+        while((a < b) || (a < c)){
+            if(b < c){
+                console.log(ionel.nume + ', ' + gigel.nume + ', ' + danut.nume);
+            }else{
+                console.log(ionel.nume + ', ' + danut.nume + ', ' + gigel.nume);
+            }
+            break;
+        }
+
+    </script>
+
+</body>
+
+</html>
