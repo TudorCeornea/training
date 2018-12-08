@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <script>
+        var n = 60;
+        var m = 1;
+        var isprime = true;
+
+        if (n % 2 == 0) {
+            isprime = false;
+        } else {
+            for (i = 3; i < n / 2; i += 2) {
+                if (n % i == 0) {
+                    isprime = false;
+                }
+            }
+        }
+        if (isprime == true) {
+            console.log("numarul este prim");
+        } else {
+            console.log("numarul nu este prim");
+        }
+
+    </script>
+
+</body>
+
+</html>

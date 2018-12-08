@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        function euclid(a, b) {
+            var c;
+            while (b) {
+                c = a % b;
+                a = b;
+                b = c;
+                console.log("a= " + a, "b= " +  b, "c= " + c);      
+            }
+            return a;
+        }
+        console.log(euclid(60, 90));
+
+    </script>
+    <meta charset="utf-8">
+    <title>Untitled Document</title>
+</head>
+
+<body>
+</body>
+
+</html>

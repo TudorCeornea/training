@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <script>
+        function testPrime(n) {
+            var isprime = true;
+            if (n % 2 == 0) {
+                isprime = false;
+            } else {
+                for (var i = 3; i < n / 2; i += 2) {
+                    if (n % i == 0) {
+                        isprime = false;
+                        break;
+                    }
+                }
+            }
+            return isprime;
+        }
+
+        for (var i = 1; i < 10000; i++) {
+            if(testPrime(i) == true){
+                console.log(i);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

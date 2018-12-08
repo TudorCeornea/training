@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        var c1 = 8;
+        var c2 = 6;
+        var i = 10;
+        
+        if (c1^2 + c2^2 == i^2) {
+            var perimetru = c1 + c2 + i;
+            console.log('perimetrul triunghiului' + perimetru);
+            var aria = (c1 * c2) / 2;
+            console.log('aria perimetrului' + aria);
+            console.log('triunghi dreptunghic');
+        } else {
+            console.log('nu este triunghi dreptunghic');
+        };
+
+        var a = 8;
+        var b = 6;
+        var c = 10;
+
+        if (a * a + b * b == c * c) {
+            var perimetru = a + b + c;
+            console.log('perimetrul triunghiului' + perimetru);
+            var aria = (a * b) / 2;
+            console.log('aria perimetrului' + aria);
+        } else if (a * a + c * c == b * b) {
+            var perimetru = a + b + c;
+            console.log('perimetrul triunghiului' + perimetru);
+            var aria = (a * c) / 2;
+            console.log('aria perimetrului' + aria);
+        } else if (c * c + b * b == a * a) {
+            var perimetru = a + b + c;
+            console.log('perimetrul triunghiului' + perimetru);
+            var aria = (c * b) / 2;
+            console.log('aria perimetrului' + aria);
+        } else {
+            console.log('triunghiul nu este dreptunghic')
+        }
+
+    </script>
+    <meta charset="utf-8">
+    <title>Untitled Document</title>
+</head>
+
+<body>
+</body>
+
+</html>
