@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Title of the document</title>
+    <script>
+        function reqListener() {
+            var data = JSON.parse(this.responseText);
+
+            console.log(data);
+            var img = new Image();
+            img.src = data[0].url;
+            img.className = "smallImage"
+            document.body.appendChild(img);
+            maxScroll = document.scrollingElement.scrollTopMax;
+            request1Arrived = true;
+        }
+
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", reqListener);
+        oReq.open("GET", "https://api.thecatapi.com/v1/images/search"); // asta zice unde se duce requestul
+        var requestSent1 = false;
+        var request1Arrived = false;
+        var requestSent2 = false;
+        var maxScroll;
+        document.addEventListener("DOMContentLoaded", start);
+        function start() {
+            console.log("start");
+            document.addEventListener("scroll", bodyOnScroll);
+            maxScroll = document.scrollingElement.scrollTopMax;
+        }
+
+        function bodyOnScroll(e) {
+            // console.log(e);
+            // console.log(document.body.scrollTop);
+            // console.log(document.body.maxScrollTop);
+            var currentPos = e.pageY;
+            // 100 .... maxScroll
+            // x .... cuurentPos
+            var percent = Math.round(100 * currentPos / maxScroll);
+            if (percent >= 80 && requestSent1 == false) {
+                oReq.send(); // asta porneste requestul
+                requestSent1 = true;
+            }
+            if (percent >= 80 && requestSent2 == false && request1Arrived == true) {
+                console.log("fa un request nou");
+                requestSent2 = true;
+            }
+            console.log(percent);
+
+        }
+        //oReq.send(); // asta porneste requestul
+    </script>
+</head>
+<style>
+    body {
+        height: 2000px;
+    }
+
+    .smallImage {
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        top: 3000px;
+    }
+</style>
+
+<body>
+    The content of the document......
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<head>
+    <script>
+        var model = [
+            {
+                name: "ana",
+                value: false,
+                body: "dummy text"
+            },
+            {
+                name: "george",
+                value: false,
+                body: "dummy text"
+            },
+            {
+                name: "ion",
+                value: false,
+                body: "dummy text"
+            },
+            {
+                name: "vasile",
+                value: false,
+                body: "dummy text"
+            },
+            {
+                name: "maria",
+                value: false,
+                body: "dummy text"
+            }
+        ];
+        document.addEventListener("DOMContentLoaded", start);
+        function start() {
+            var checkbox = document.getElementsByClassName("customCheckbox")[0];
+            var clone;
+            var itemText;
+            var itemAcc;
+            for (var i = 0; i < model.length; i++) {
+                clone = checkbox.cloneNode(true);
+                itemText = clone.getElementsByClassName("itemText")[0];
+                itemText.innerHTML = model[i].name;
+                itemAcc = clone.getElementsByClassName("acordeonBody")[0];
+                itemAcc.innerHTML = model[i].body;
+                clone.id = "c" + i;
+                clone.addEventListener("click", checkboxClick);
+                document.body.appendChild(clone);
+            }
+            checkbox.remove();
+        }
+
+        function checkboxClick(event) {
+            //console.log("event.target", event.target);
+            //console.log("event.currentTarget", event.currentTarget);
+
+            console.log(id);
+            var btn;
+            var item;
+            for (var i = 0; i < model.length; i++) {
+                item = document.getElementById("c" + i);
+                btn = item.getElementsByClassName("button")[0];
+                btn.classList.remove("button-selected");
+                model[i].value = false;
+            }
+
+            var id = parseInt(event.currentTarget.id.substr(1));
+            model[id].value = true;
+            btn = event.currentTarget.getElementsByClassName("button")[0];
+            btn.classList.add("button-selected");
+            acordeon = event.currentTarget.getElementsByClassName("acordeonBody")[0];
+            acordeon.style.display = "block";
+
+            console.log(model);
+        }
+    </script>
+    <style>
+        .customCheckbox {
+            display: block;
+            width: 150px;
+            height: 100%;
+            background: red;
+            align-items: center;
+        }
+
+        .button {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: black;
+            border: 1px solid red;
+        }
+
+        .button-selected {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: green;
+            border: 1px solid red;
+        }
+
+        .itemText {
+            display: inline-block;
+            color: white;
+            margin-left: 5px;
+        }
+
+        .acordeonBody {
+            height: 100px;
+            width: 100%;
+            background: yellow;
+            display: none;
+        }
+    </style>
+</head>
+<html>
+
+<body>
+
+    <div class="customCheckbox">
+        <div class="button">
+
+        </div>
+        <div class="itemText">
+            text
+        </div>
+        <div class="acordeonBody">
+
+        </div>
+    </div>
+
+</body>
+
+</html>

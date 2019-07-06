@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+        var bubbles = [];
+        var noBubbles = 100;
+        var bubblesModel = [];
+        var posX = 500;
+        var posY = 500;
+        var speed = -6;
+        var amplitudeX = 150;
+        var step = 0;
+        var stepSize = 1;
+        var initPosX = 500;
+
+        function start() {
+            var bubble;
+            for (var i = 0; i < noBubbles; i++) {
+                bubble = document.createElement("div");
+                document.body.appendChild(bubble);
+                size = 5 + Math.random() * 10;
+                bubble.className = "bubble";
+                bubblesModel[i] = {
+                    initX: posX,
+                    y: posY,
+                    speed: (5 + Math.random() * 5) * - 1,
+                    amplitudeX: 10 * Math.random() * 10,
+                    step: 0,
+                    stepSize: .05 + Math.random() / 100,
+                    direction: (i % 2 == 0 ? 1 : -1)
+                }
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${posX}px`;
+                bubble.style.top = `${posY}px`;
+                bubbles.push(bubble);
+            }
+
+            document.body.addEventListener("mousemove", bodyMouseMove)
+
+            requestAnimationFrame(moveBubbles);
+        }
+
+        function bodyMouseMove(e) {
+            posX = e.clientX;
+            posY = e.clientY;
+        }
+
+        function moveBubbles() {
+            var y;
+            var x;
+            for (var i = 0; i < noBubbles; i++) {
+                y = bubblesModel[i].y;
+                y += bubblesModel[i].speed;
+
+                x = bubblesModel[i].initX + Math.sin(bubblesModel[i].step) * bubblesModel[i].amplitudeX;
+                bubblesModel[i].step += bubblesModel[i].stepSize * bubblesModel[i].direction;
+                if (y < - 10) {
+                    bubblesModel[i] = {
+                        initX: posX,
+                        y: posY,
+                        speed: (5 + Math.random() * 5) * - 1,
+                        amplitudeX: 10 * Math.random() * 10,
+                        step: 0,
+                        stepSize: .05 + Math.random() / 100,
+                        direction: (i % 2 == 0 ? 1 : -1),
+                    };
+                    x = posX;
+                    //initPosX = posX;
+                    y = posY;
+                }
+                bubblesModel[i].y = y;
+                bubbles[i].style.left = `${x}px`;
+                bubbles[i].style.top = `${y}px`;
+            }
+
+            requestAnimationFrame(moveBubbles);
+        }
+    </script>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        .bubble {
+            display: inline-block;
+            position: absolute;
+            border: 1px solid red;
+            border-radius: 50%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+</body>
+
+</html>

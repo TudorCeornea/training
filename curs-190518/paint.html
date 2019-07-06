@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Title of the document</title>
+    <script src="genericPaint.js"></script>
+    <script src="canvasPaint.js"></script>
+    <script src="svgPaint.js"></script>
+    <script>
+        var paint = new GenericPaint(500, 500);
+        paint.lineWidth = 5;
+        paint.setLineWidth(10);
+        var lineWidth = paint.lineWidth;
+        var lineWidth2 = paint.getLineWidth();
+        var canvasPaint;
+        var svgPaint;
+        document.addEventListener("DOMContentLoaded", start)
+
+        function start() {
+            canvasPaint = new CanvasPaint(document.body, 500, 500);
+            canvasPaint.lineWidth = 1;
+            canvasPaint.color = "#ff0000";
+            canvasPaint.drawLine(50, 50, 100, 100);
+            canvasPaint.lineWidth = 2;
+            canvasPaint.color = "#ff0500";
+            canvasPaint.drawLine(50, 50, 100, 200);
+            canvasPaint.lineWidth = 3;
+            canvasPaint.color = "#ff000a";
+            canvasPaint.drawLine(50, 50, 100, 300);
+            canvasPaint.lineWidth = 4;
+            canvasPaint.color = "#ff00f0";
+            canvasPaint.drawLine(50, 50, 100, 400);
+
+            canvasPaint.lineWidth = 4;
+            canvasPaint.color = "#ccc";
+            canvasPaint.drawCircle(100, 100, 100);
+
+            canvasPaint.lineWidth = 2;
+            canvasPaint.color = "#41f4b2";
+            canvasPaint.drawRectangle(50, 50, 140, 100);
+
+            svgPaint = new SVGPaint(document.body, 500, 500);
+            svgPaint.lineWidth = 1;
+            svgPaint.color = "#ff0000";
+            svgPaint.drawLine(50, 50, 100, 100);
+            svgPaint.lineWidth = 2;
+            svgPaint.color = "#fa0090";
+            svgPaint.drawLine(50, 50, 100, 200);
+            svgPaint.lineWidth = 3;
+            svgPaint.color = "#ffcc00";
+            svgPaint.drawLine(50, 50, 100, 300);
+            svgPaint.lineWidth = 4;
+            svgPaint.color = "#00a800";
+            svgPaint.drawLine(50, 50, 100, 400);
+
+            svgPaint.lineWidth = 4;
+            svgPaint.color = "#ccc";
+            svgPaint.drawCircle(100, 100, 100);
+
+            svgPaint.lineWidth = 4;
+            svgPaint.color = "#41f4b2";
+            svgPaint.drawRectangle(50, 50, 140, 100);
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

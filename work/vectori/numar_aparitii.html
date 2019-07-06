@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        var numbers = [1, 1, 2, 2, 2, 3, 1, 4, 6, 3];
+        var n;
+        var count;
+        //TEMA: modifica algoritmul de mai jos astfel incat sa imi afiseze un numar si numar de aparitii o singura data
+        for (i = 0; i < numbers.length; i++) {
+            count = 1;
+            for (j = 0; j < numbers.length; j++) {
+                if (numbers[i] == numbers[j]) {
+                    if (i != j) {
+                        count++;      
+                    }
+                } 
+            }
+            console.log(numbers[i], count);
+
+        }
+        
+        
+        var hash = { };
+        for (i = 0; i < numbers.length; i++) {
+            if (hash[numbers[i]] != undefined) {
+                hash[numbers[i]]++;
+            } else {
+                hash[numbers[i]] = 1;
+            }
+        }
+        
+        console.log(hash);
+        
+        
+
+    </script>
+    <meta charset="utf-8">
+    <title>Untitled Document</title>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title></title>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", start);
+        var dragDivs = [];
+        // dragging = false;
+        var noDivs = 10;
+        var windowWidth;
+        var windowHeight;
+        var dx;
+        var dy;
+        var dragDiv;
+        // var p2;
+
+
+        function start(e) {
+            windowWidth = window.innerWidth;
+            windowHeight = window.innerHeight;
+            createDivs();
+
+
+            window.addEventListener("resize", windowResize);
+            document.body.addEventListener("mouseleave", pageLeave);
+        }
+
+        function createDivs() {
+            var div;
+            for (var i = 0; i < noDivs; i++) {
+                div = document.createElement("div");
+                document.body.appendChild(div);
+
+                div.className = "dragDiv";
+                div.style.top = `${Math.random() * windowHeight - 100}px`;
+                div.style.left = `${Math.random() * windowWidth - 100}px`;
+                div.style.width = `${10 + Math.random() * 100}px`;
+                div.style.height = `${10 + Math.random() * 100}px`;
+                dragDivs.push(div);
+
+                div.addEventListener("mousedown", dragDivMouseDown);
+            }
+        }
+
+        function pageLeave(e) {
+            document.body.removeEventListener("mouseup", dragDivMouseUp);
+            document.body.removeEventListener("mousemove", pageLeave);
+        }
+
+        function windowResize(e) {
+            windowWidth = window.innerWidth;
+            windowHeight = window.innerHeight;
+        }
+
+        function dragDivMouseDown(e) {
+            dragDiv = e.currentTarget;
+            dx = e.clientX - e.target.getBoundingClientRect().x;
+            dy = e.clientY - e.target.getBoundingClientRect().y;
+
+            document.body.addEventListener("mouseup", dragDivMouseUp);
+            document.body.addEventListener("mousemove", dragDivMouseMove);
+        }
+
+        function dragDivMouseUp(e) {
+            document.body.removeEventListener("mouseup", dragDivMouseUp);
+            document.body.removeEventListener("mousemove", dragDivMouseMove);
+            dragDiv = null;
+            // dragging = false;
+        }
+
+        function dragDivMouseMove(e) {
+
+            //    if (dragging) {
+            var p2;
+            var collision = false;
+            var x = e.clientX - dx;
+            var y = e.clientY - dy;
+
+            if (x < 0) {
+                x = 0;
+            }
+
+            if (y < 0) {
+                y = 0;
+            }
+
+            if (x > windowWidth - dragDiv.clientWidth) {
+                x = windowWidth - dragDiv.clientHeight;
+            }
+
+            if (y > windowHeight - dragDiv.clientHeight) {
+                y = windowHeight - dragDiv.clientHeight;
+            }
+
+            var p1 = {
+                x: x,
+                y: y,
+                width: dragDiv.clientWidth,
+                height: dragDiv.clientHeight
+            }
+
+            for (var i = 0; i < dragDivs.length; i++) {
+                if (dragDivs[i] !== dragDiv) {
+                    p2 = {
+                        x: dragDivs[i].offsetLeft,
+                        y: dragDivs[i].offsetTop,
+                        width: dragDivs[i].clientWidth,
+                        height: dragDivs[i].clientHeight
+                    };
+
+
+                    if (p1.x > p2.x + p2.width ||
+                        p1.x + p1.width < p2.x ||
+                        p1.y > p2.y + p2.height ||
+                        p1.y + p1.height < p2.y) {
+                        dragDivs[i].style.background = "red";
+                    }
+                    else {
+                        collision = true;
+                        dragDivs[i].style.background = "green";
+                    }
+                }
+            }
+
+            if (collision == true) {
+                console.log("grren");
+                dragDiv.style.background = "green";
+            } else {
+                dragDiv.style.background = "red";
+            }
+
+            dragDiv.style.left = `${x}px`;
+            dragDiv.style.top = `${y}px`;
+        }
+    //    }
+
+    </script>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .dragDiv {
+            display: inline-block;
+            background: red;
+            width: 50px;
+            height: 50px;
+            user-select: none;
+            position: absolute;
+        }
+
+        .blueDiv {
+            display: inline-block;
+            background: blue;
+            width: 2px;
+            height: 50px;
+            top: 250px;
+            left: 250px;
+            position: absolute;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+</body>
+
+</html>

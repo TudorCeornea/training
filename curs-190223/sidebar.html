@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sidebar</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 3000px;
+        }
+
+        ul {
+            display: inline-block;
+            vertical-align: top;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            list-style-type: none;
+            height: 20px;
+            width: 50px;
+        }
+
+        .sidebar {
+            color: #fff;
+            background: orange;
+            position: fixed;
+            top: 50px;
+            left: -55px;
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-button {
+            display: inline-block;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            cursor: pointer;
+        }
+
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+        var sidebar;
+        var sidebarButton;
+        var expanded = false;
+
+        function start() {
+            sidebar = document.getElementsByClassName("sidebar")[0];
+            sidebarButton = document.getElementsByClassName("sidebar-button")[0];
+
+            sidebarButton.addEventListener("click", sidebarButtonClick);
+        }
+
+        function sidebarButtonClick() {
+            if (expanded) {
+                sidebar.style.left = "-55px";
+                expanded = false;
+            } else {
+                sidebar.style.left = "0";
+                expanded = true;
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <ul class="submenu">
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+            <li>item 4</li>
+            <li>item 5</li>
+            <li>item 6</li>
+            <li>item 7</li>
+        </ul>
+        <div class="sidebar-button">sidebar</div>
+    </div>
+</body>
+
+</html>

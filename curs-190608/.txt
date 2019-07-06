@@ -1,0 +1,15 @@
+Principii de baza pentru OOP
+
+Encapsulare
+Polimorfism - se refera la suprascriere
+Mostenire
+
+Closure(!)
+Hoisting(!)
+Scope(!)
+Immediately Invoked Function(!)
+requestAnimationFrame(!)
+Bind(!)
+Bubbling(!)
+Capturing(!)
+Prototype(!)

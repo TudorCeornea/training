@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+
+    <script type="text/javascript">
+        var s = "spatiile    plus    unu    ";
+        
+        var spatiu = " ";
+        s = spatiu + s;
+        var cuvinte = 0;
+        var caracterCurent;
+        var caracterUrmator = 0;
+        console.log(s);
+
+        for (var i = 0; i < s.length - 1; i++) {
+            caracterCurent = s.charAt(i);
+            caracterUrmator = s.charAt(i + 1);
+            if ((caracterCurent == spatiu) && (caracterUrmator != spatiu)) {
+                cuvinte++;
+
+            }
+        }
+        //if (s.charAt[0] != spatiu) {
+        //    cuvinte++;
+        //}
+        console.log("Nr. Cuvinte: " + cuvinte);
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        var numbers = ["1", "4", "3", "7", "9"];
+        var largest = numbers[0];
+        var smallest = numbers[0];
+        var indexLargest = 0;
+        var indexSmallest = 0;
+
+        for (var i = 0; i < numbers.length; i++) {
+            if (numbers[i] > largest) {
+                largest = numbers[i];
+                indexLargest = i;
+            } else if (numbers[i] < smallest) {
+                smallest = numbers[i];
+                indexSmallest = i;
+            }
+        }
+        console.log(largest + " " + indexLargest);
+        console.log(smallest + " " + indexSmallest);
+
+    </script>
+    <meta charset="utf-8">
+    <title>Untitled Document</title>
+</head>
+
+<body>
+</body>
+
+</html>

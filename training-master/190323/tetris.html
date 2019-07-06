@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tetris</title>
+</head>
+
+<script>
+
+    // setInterval | clearInterval
+    // setTimeout | clearTimeout
+    // requestAnimationFrame | cancelAnimationFrame
+
+    document.addEventListener("DOMContentLoaded", start);
+
+    var lines = 15;
+    var columns = 7;
+    var model = [];
+    var divMatrix = [];
+    var sqWidth = 25;
+    var containerDiv;
+    var gameInterval;
+    var selectedSquare;
+    var rightKeyIsDown = false;
+    var leftKeyIsDown = false;
+    var downKeyIsDown = false;
+    var frame;
+
+    function start() {
+        generateBoard();
+        addKeyListeners();
+        startGame();
+    }
+
+    function addKeyListeners() {
+        document.body.addEventListener("keydown", keyDownListener);
+        document.body.addEventListener("keyup", keyUpListener);
+    }
+
+    function keyDownListener(e) {
+        switch (e.code) {
+            case "ArrowRight":
+                rightKeyIsDown = true;
+                break;
+            case "ArrowLeft":
+                leftKeyIsDown = true;
+                break;
+        }
+    }
+
+    function updateForKeyPress() {
+        if (rightKeyIsDown) {
+            if (selectedSquare.j < columns - 1 && model[selectedSquare.i][selectedSquare.j + 1] === 0) {
+                model[selectedSquare.i][selectedSquare.j] = 0;
+                selectedSquare.j++;
+                model[selectedSquare.i][selectedSquare.j] = 1;
+                drawMatrix();
+            }
+        }
+        if (leftKeyIsDown) {
+            if (selectedSquare.j > 0 && model[selectedSquare.i][selectedSquare.j - 1] === 0) {
+                model[selectedSquare.i][selectedSquare.j] = 0;
+                selectedSquare.j--;
+                model[selectedSquare.i][selectedSquare.j] = 1;
+                drawMatrix();
+            }
+        }
+
+        if (downKeyIsDown) {
+            if (model[selectedSquare.i + 1][selectedSquare.j] == 1) {
+                model[selectedSquare.i][selectedSquare.j] = 0;
+                selectedSquare.j--;
+                model[selectedSquare.i][selectedSquare.j] = 1;
+                drawMatrix();
+            }
+        }
+
+        frame = setTimeout(updateForKeyPress, 80);
+    }
+
+    function keyUpListener(e) {
+        switch (e.code) {
+            case "ArrowRight":
+                rightKeyIsDown = false;
+                break;
+            case "ArrowLeft":
+                leftKeyIsDown = false;
+            case "ArrowDown":
+                downKeyIsDown = false;
+
+        }
+    }
+
+    function startGame() {
+        generateFullSquare();
+        gameInterval = setInterval(gameLoop, 100);
+        frame = setTimeout(updateForKeyPress, 80);
+    }
+
+    function generateFullSquare() {
+        if (model[0][3] == 1) {
+            resetGame();
+        }
+        selectedSquare = { i: 0, j: 3 };
+        model[selectedSquare.i][selectedSquare.j] = 1;
+        //voi face niste teste mai tarziu
+
+    }
+
+    function resetGame() {
+        clearInterval(gameInterval);
+        for (var i = 0; i < lines; i++) {
+            for (var j = 0; j < columns; j++) {
+                divMatrix[i][j].classList.remove("full");
+                model[i][j] = 0;
+            }
+        }
+        startGame();
+    }
+
+    function verifyLastLine() {
+        var numberOfOnes = 0;
+        for (var j = 0; j < columns; j++) {
+            if (model[lines - 1][j] == 1) {
+                numberOfOnes++;
+            }
+        }
+
+        if (numberOfOnes == columns) {
+            for (var i = lines - 1; i > 0; i--) {
+                for (j = 0; j < columns; j++) {
+                    model[i][j] = model[i - 1][j];
+                }
+            }
+        }
+    }
+
+    function moveSwuareDown() {
+        //testul de margin jos
+        if (selectedSquare.i == model.length - 1) {
+            verifyLastLine();
+            generateFullSquare();
+            drawMatrix();
+            return;
+        }
+
+        //testul de patrat sub patratul curent
+        if (model[selectedSquare.i + 1][selectedSquare.j] == 1) {
+            generateFullSquare();
+            drawMatrix();
+            return;
+        }
+
+        model[selectedSquare.i][selectedSquare.j] = 0;
+        selectedSquare.i++;
+        model[selectedSquare.i][selectedSquare.j] = 1;
+    }
+
+    function gameLoop() {
+        moveSwuareDown();
+
+        drawMatrix();
+    }
+
+    function drawMatrix() {
+
+        for (var i = 0; i < lines; i++) {
+            for (var j = 0; j < columns; j++) {
+                if (model[i][j] == 1) {
+                    divMatrix[i][j].classList.add("full");
+                } else {
+                    divMatrix[i][j].classList.remove("full");
+                }
+            }
+        }
+
+    }
+
+    function generateBoard() {
+        var body = document.body;
+        var square;
+        containerDiv = document.createElement("div");
+        containerDiv.className = "containerDiv";
+        body.appendChild(containerDiv);
+        for (var i = 0; i < lines; i++) {
+            model[i] = [];
+            divMatrix[i] = [];
+            for (var j = 0; j < columns; j++) {
+                model[i][j] = 0;
+                square = document.createElement("div");
+                divMatrix[i][j] = square;
+                square.id = `${i}-${j}`;
+                square.className = "square";
+                square.style.width = `${sqWidth}px`;
+                square.style.height = `${sqWidth}px`;
+                square.style.top = `${i * sqWidth}px`;
+                square.style.left = `${j * sqWidth}px`;
+                containerDiv.appendChild(square);
+            }
+        }
+    }
+
+</script>
+
+<style>
+    body {
+        padding: 0;
+        max-width: 0;
+    }
+
+    .containerDiv {
+        position: relative;
+    }
+
+    .square {
+        background: #00f;
+        position: absolute;
+        display: inline-block;
+    }
+
+    .full {
+        background: #fff;
+    }
+</style>
+
+<body>
+
+
+
+</body>
+
+</html>

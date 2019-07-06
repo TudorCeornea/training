@@ -1,0 +1,2 @@
+1. animatie pe acordeon
+2. checkbox sistem de acordeon

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        var n = [1, 20, 100, 2000, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 7, 8];
+        var lungime = 1;
+        var index = 0;
+        var maxIndex = 0;
+        var maxLungime = 1;
+        for (var i = 1; i < n.length; i++) {
+            if (n[i] < n[i - 1]) {
+                if (lungime > maxLungime) {
+                    maxIndex = index;
+                    maxLungime = lungime;
+                }
+                index = i;
+                lungime = 1;
+            } else {
+                lungime++;
+            }
+        }
+
+        if (lungime > maxLungime) {
+            maxIndex = index;
+            maxLungime = lungime;
+        }
+
+        console.log(n);
+        console.log("numarul din secventa ", n[maxIndex]);
+        console.log("indexul de inceput al secventei maxime ", maxIndex);
+        console.log("lungimea secventei ", maxLungime);
+
+        for (var i = maxIndex; i < maxIndex + maxLungime; i++) {
+            console.log(n[i]);
+        }
+
+    </script>
+    <meta charset="utf-8">
+    <title>Untitled Document</title>
+</head>
+
+<body>
+</body>
+
+</html>

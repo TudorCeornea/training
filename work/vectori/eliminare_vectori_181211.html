@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        var numbers = ["4", "4", "4", "4", "4", "4", "7", "9"];
+        var two = [];
+        var n = 5;
+
+        for (var i = 0; i < numbers.length; i++) {
+            if (numbers[i] > n) {
+                two.push(numbers[i]);
+            }
+        }
+        console.log(two);
+        
+        for (var i = 0; i < numbers.length; i++) {
+            if (numbers[i] < n) {
+                numbers.splice(i, 1);
+                i--;
+            }
+        }
+        console.log(numbers);
+        
+        
+        numbers = ["4", "4", "4", "4", "4", "4", "7", "9"];
+        numbers = numbers.filter( nr => nr > n);
+        
+//        function (p1, p2, p3) {
+//            return ceva;
+//        }
+//        
+//        (p1, p2, p3) => {
+//            return ceva;
+//        }
+//        p1 => p1 > 5
+        
+        console.log(numbers);
+        
+        numbers = ["4", "4", "4", "4", "4", "4", "7", "9"];
+        numbers = numbers.filter( function (number) {
+            if (number > n) { 
+                return number;
+            }
+        });
+        
+        console.log(numbers);
+        
+        
+        numbers = ["4", "4", "4", "4", "4", "4", "7", "9"];
+        for (var i = 0; i < numbers.length; i++) {
+            if (numbers[i] < n) {
+                for (var j = i; j < numbers.length - 1; j++) {
+                    numbers[j] = numbers[j + 1];
+                }
+                numbers.pop();
+                i--;
+            }
+        }
+        console.log(numbers);
+    </script>
+    <meta charset="utf-8">
+    <title>Untitled Document</title>
+</head>
+
+<body>
+</body>
+
+</html>
