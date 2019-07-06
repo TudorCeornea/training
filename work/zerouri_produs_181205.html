@@ -3,17 +3,14 @@
 
 <head>
     <script type="text/javascript">
-        var n = 1050;
-        var m = 23800;
-        var counter = 0;
-        var produs = m * n;
-        console.log(produs);
-        
-        while (produs % 10 == 0) {
-            produs = Math.floor(produs / 10);
-            counter++;
+        var numbers = ["1", "4", "3", "7", "9"];
+        var n = 5;
+
+        for (var i = 0; i < numbers.length; i++) {
+            if (numbers[i] > n) {
+                console.log(numbers[i]);
+            }
         }
-        console.log(counter);
 
     </script>
     <meta charset="utf-8">
